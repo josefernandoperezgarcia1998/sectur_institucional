@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <link rel="shortcut icon" href="{{ asset('assets/img/logo_sectur_favicon.ico') }}">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Secretaría de Turismo - @yield('title_page')</title>
+    <title>Secretaría de Turismo - Panel de administración</title>
     <!-- CSS CDN for Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -70,12 +70,23 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">@yield('title_page')</h1>
+                    <h1 class="h2">Panel de administración</h1>
                 </div>
                 <div class="container">
                     <div class="row">
                         <!-- Content here -->
-                        @yield('content_page')
+                        <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">Categorías</h5>
+                                    <p class="card-text">Categorías existentes: <span class="badge bg-dark">{{$category_count}}.</span></p>
+                                    <div class="text-end">
+
+                                        <a href="{{ route('category.index') }}" class="btn btn-primary btn-sm">Ver más</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -93,8 +104,6 @@
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
     </script>
     <script src="{{ asset('assets/dist/js/js_dashboard/dashboard.js') }}"></script>
-    
-    
 </body>
 
 </html>

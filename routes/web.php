@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('category', CategoryController::class);
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+Route::resource('category', App\Http\Controllers\CategoryController::class)->names('category');
+
