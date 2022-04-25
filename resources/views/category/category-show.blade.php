@@ -1,7 +1,7 @@
 @extends('plantilla.general')
 
 @section('title_page')
-Conócenos mostrar
+Mostrar Categoría
 @endsection
 
 @section('content_page')

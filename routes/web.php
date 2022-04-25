@@ -20,4 +20,5 @@ Route::get('/', function () {
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('category', App\Http\Controllers\CategoryController::class)->names('category');
+Route::resource('subcategory', App\Http\Controllers\SubCategoryController::class)->names('subcategory');
 

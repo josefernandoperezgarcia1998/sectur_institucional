@@ -1,7 +1,7 @@
 @extends('plantilla.general')
 
 @section('title_page')
-Conócenos editar
+Editar categoría
 @endsection
 
 @section('content_page')
@@ -28,6 +28,7 @@ Conócenos editar
     </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Imagen</label>
+        <img class="img-fluid" src="{{asset('storage').'/'.$category->imagen}}" alt="imagen_category" class="img-thumnail" height="100" width="100">
         <input type="file" class="form-control" id="" placeholder="" name="imagen">
     </div>
     <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>

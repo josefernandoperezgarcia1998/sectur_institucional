@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class SubCategory extends Model
 {
     use HasFactory;
 
@@ -14,14 +14,12 @@ class Category extends Model
         'slug',
         'description',
         'imagen',
-        'title_subcategory',
-        'links_subcategory',
+        'category_id',
     ];
 
-    /* One category has many subcategories */
-    public function subcategory()
+    /* Many Subcategories belongs to a one category */
+    public function category()
     {
-        return $this->hasMany('App\Models\SubCategory','id','category_id');
+        return $this->belongsTo('App\Models\Category');
     }
-
 }
