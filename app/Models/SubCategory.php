@@ -22,4 +22,10 @@ class SubCategory extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    /* One subcategory has many subtemas */
+    public function subtema()
+    {
+        return $this->hasMany('App\Models\SubTema','id','subcategory_id');
+    }
 }

@@ -79,10 +79,34 @@
                                 <div class="card">
                                     <div class="card-body">
                                     <h5 class="card-title">Categorías</h5>
-                                    <p class="card-text">Categorías existentes: <span class="badge bg-dark">{{$category_count}}.</span></p>
+                                    <p class="card-text">Categorías existentes: <span class="badge bg-dark">{{$category_count}}</span></p>
                                     <div class="text-end">
 
-                                        <a href="{{ route('category.index') }}" class="btn btn-primary btn-sm">Ver más</a>
+                                        <a href="{{ route('category.index') }}" class="btn btn-primary btn-sm">Ver...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">Subcategorías</h5>
+                                    <p class="card-text">Subcategorías existentes: <span class="badge bg-dark">{{$subcategory_count}}</span></p>
+                                    <div class="text-end">
+
+                                        <a href="{{ route('subcategory.index') }}" class="btn btn-primary btn-sm">Ver...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">Subtemas</h5>
+                                    <p class="card-text">Subtemas existentes: <span class="badge bg-dark">{{$subtema_count}}</span></p>
+                                    <div class="text-end">
+
+                                        <a href="{{ route('subtema.index') }}" class="btn btn-primary btn-sm">Ver...</a>
                                     </div>
                                 </div>
                             </div>

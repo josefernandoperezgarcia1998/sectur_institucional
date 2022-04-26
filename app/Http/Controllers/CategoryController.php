@@ -73,10 +73,11 @@ class CategoryController extends Controller
         //     $category_data['imagen']=$nombre_de_archivo;
         // }
 
-        $imagen = $request->file('imagen');
-        $nombre_de_archivo = $imagen->getClientOriginalName();
+
 
         if($request->hasFile('imagen')){
+            $imagen = $request->file('imagen');
+            $nombre_de_archivo = $imagen->getClientOriginalName();
             $category_data['imagen']= $request->file('imagen')->storeAs('uploads/categoria', $nombre_de_archivo, 'public');
         }
 
@@ -128,10 +129,11 @@ class CategoryController extends Controller
 
         $category_data = request()->except('_token','_method');
 
-        $imagen = $request->file('imagen');
-        $nombre_de_archivo = $imagen->getClientOriginalName();
+        
         
         if($request->hasfile('imagen')){
+            $imagen = $request->file('imagen');
+            $nombre_de_archivo = $imagen->getClientOriginalName();
             $category = Category::findOrFail($id);
             Storage::delete('public/'.$category->imagen);
             $category_data['imagen']= $request->file('imagen')->storeAs('uploads/categoria', $nombre_de_archivo, 'public');

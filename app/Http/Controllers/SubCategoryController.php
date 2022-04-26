@@ -51,10 +51,11 @@ class SubCategoryController extends Controller
             'description' => 'string',
         ]);
 
-        $imagen = $request->file('imagen');
-        $nombre_de_archivo = $imagen->getClientOriginalName();
+        
 
         if($request->hasFile('imagen')){
+            $imagen = $request->file('imagen');
+            $nombre_de_archivo = $imagen->getClientOriginalName();
             $subcategory_data['imagen']= $request->file('imagen')->storeAs('uploads/subcategoria', $nombre_de_archivo, 'public');
         }
 
