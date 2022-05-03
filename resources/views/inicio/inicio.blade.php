@@ -25,7 +25,7 @@
             user-select: none;
         }
 
-        .no_view{
+        .no_view {
             opacity: 1;
         }
 
@@ -34,7 +34,7 @@
                 font-size: 3.5rem;
             }
 
-            .no_view{
+            .no_view {
                 opacity: 0;
             }
 
@@ -75,33 +75,16 @@
                     {{-- Section 1 --}}
                     <div class="row justify-content-md-center">
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                    class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
-                                    aria-label="Slide 4"></button>
-                            </div>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-contacto-limpio.jpg"
-                                        class="d-block w-100" alt="...">
+                                @forelse ($data1 as $item)
+                                <div class="carousel-item @if($loop->index==0) active @endif">
+                                    <a href="{{ $item->enlace }}" target="_blank">
+                                        <img src="{{asset('storage').'/'.$item->imagen}}" alt="imagen"
+                                            class="img-fluid rounded mx-auto d-block">
+                                    </a>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-gaceta-1.jpg"
-                                        class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-integridadpublica.jpg"
-                                        class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-contacto-limpio.jpg"
-                                        class="d-block w-100" alt="...">
-                                </div>
+                                @empty
+                                @endforelse
                             </div>
                             <button class="carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -120,57 +103,39 @@
                     {{-- Section 2 --}}
                     <div class="row justify-content-md-center text-center">
                         <h1 class="display-6">Transparencia</h1>
+                        @forelse ($data2 as $item)
                         <div class="col-6 col-md-4">
                             <div class="card">
-                                <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-pnt.png"
-                                    class="card-img-top" alt="...">
+                                    <a href="{{$item->enlace}}">
+                                        <img src="{{asset('storage').'/'.$item->imagen}}" alt="imagen"
+                                        class="card-img-top">
+                                    </a>
                                 <div class="card-body">
                                     {{-- <h5 class="card-title">Card title</h5> --}}
-                                    <p class="card-text">This is a longer card with supporting text..</p>
+                                    <p class="card-text">{{$item->descripcion}}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-4">
-                            <div class="card">
-                                <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-consulta.png"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    {{-- <h5 class="card-title">Card title</h5> --}}
-                                    <p class="card-text">This is a longer card with supporting text..</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4">
-                            <div class="card">
-                                <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-consulta-fidetur.png"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">This is a longer card with supporting text..</p>
-                                </div>
-                            </div>
-                        </div>
+                        @empty
+                            
+                        @endforelse
                     </div>
                     <br><br>
 
                     {{-- Section 3 --}}
                     <div class="row justify-content-md-center text-center">
                         <h1 class="display-6">Promoción</h1>
+                        @forelse ($data3 as $item)
                         <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/banners/boton-descargables.png"
-                                alt="">
+                            <a href="{{$item->enlace}}" target="_blank">
+                                <img src="{{asset('storage').'/'.$item->imagen}}" alt="imagen"
+                                    class="card-img-top" style="width: auto;
+                                    height: auto;">
+                            </a>
                         </div>
-                        <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/banners/boton-rnt.png"
-                                alt="">
-                        </div>
-                        <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/banners/boton-operadores.png"
-                                alt="">
-                        </div>
-                        <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/banners/boton-portal-promocional.png"
-                                alt="">
-                        </div>
+                        @empty
+                            
+                        @endforelse
                     </div>
                     <br><br>
 
@@ -181,22 +146,17 @@
                             <div class="row justify-content-md-center text-center">
                                 <div class="col-6 col-md-6">
                                     <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-indicators">
-                                            <button type="button" data-bs-target="#carouselExampleIndicators1"
-                                                data-bs-slide-to="0" class="active" aria-current="true"
-                                                aria-label="Slide 1"></button>
-                                            <button type="button" data-bs-target="#carouselExampleIndicators1"
-                                                data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                        </div>
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-triptico.jpg"
-                                                    class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/Banner-500x177px.jpg"
-                                                    class="d-block w-100" alt="...">
-                                            </div>
+                                            @forelse ($data4 as $item)
+                                                <div class="carousel-item @if($loop->index==0) active @endif">
+                                                    <a href="{{ $item->enlace }}" target="_blank">
+                                                        <img src="{{asset('storage').'/'.$item->imagen}}" alt="imagen"
+                                                            class="img-fluid rounded mx-auto d-block">
+                                                    </a>
+                                                </div>
+                                            @empty
+                                                
+                                            @endforelse
                                         </div>
                                         <button class="carousel-control-prev" type="button"
                                             data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
@@ -212,22 +172,17 @@
                                 </div>
                                 <div class="col-6 col-md-6">
                                     <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-indicators">
-                                            <button type="button" data-bs-target="#carouselExampleIndicators2"
-                                                data-bs-slide-to="0" class="active" aria-current="true"
-                                                aria-label="Slide 1"></button>
-                                            <button type="button" data-bs-target="#carouselExampleIndicators2"
-                                                data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                        </div>
                                         <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/banners/banner-descargar-mapas.jpg"
-                                                    class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="http://www.turismochiapas.gob.mx/institucional/media/inicio/banner-escuelas-resilentes.jpg"
-                                                    class="d-block w-100" alt="...">
-                                            </div>
+                                            @forelse ($data5 as $item)
+                                                <div class="carousel-item @if($loop->index==0) active @endif">
+                                                    <a href="{{ $item->enlace }}" target="_blank">
+                                                        <img src="{{asset('storage').'/'.$item->imagen}}" alt="imagen"
+                                                            class="img-fluid rounded mx-auto d-block">
+                                                    </a>
+                                                </div>
+                                            @empty
+                                                
+                                            @endforelse
                                         </div>
                                         <button class="carousel-control-prev" type="button"
                                             data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
@@ -249,22 +204,14 @@
                     {{-- Section 5 --}}
                     <div class="row justify-content-md-center text-center">
                         <h1 class="display-6">Secretaría</h1>
+                        @forelse ($data6 as $item)
                         <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/promo/ley.jpg"
-                                alt="">
+                            <img src="{{asset('storage').'/'.$item->imagen}}" alt="imagen"
+                                class="img-fluid rounded mx-auto d-block">
                         </div>
-                        <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/promo/conducta.jpg"
-                                alt="">
-                        </div>
-                        <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/promo/estadisticas.jpg"
-                                alt="">
-                        </div>
-                        <div class="col">
-                            <img src="http://www.turismochiapas.gob.mx/institucional/media/portada/promo/banner-violencia-genero.jpg"
-                                alt="">
-                        </div>
+                        @empty
+                            
+                        @endforelse
                     </div>
 
                 </div>
