@@ -14,7 +14,7 @@ Crear subcategoría
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('subcategory.index') }}">Categoría</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('subcategory.index') }}">Subcategoría</a></li>
         <li class="breadcrumb-item active" aria-current="page">Crear</li>
     </ol>
 </nav>

@@ -21,4 +21,9 @@ class SubTema extends Model
     {
         return $this->belongsTo('App\Models\SubCategory');
     }
+
+    public function subTemaElement()
+    {
+        return $this->hasMany('App\Models\SubTemaElement','id','subtema_id');
+    }
 }

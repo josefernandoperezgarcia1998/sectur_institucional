@@ -51,7 +51,7 @@
         </div>
 
         {{-- Contenido --}}
-        <div class="card">
+        <div class="card shadow p-3 mb-5 bg-body rounded">
             <div class="card-header card-header-primary">
                 <h4 class="card-title ">Subcategoría</h4>
                 <p class="card-category">Listado de subcategorías registradas dentro del sistema</p>

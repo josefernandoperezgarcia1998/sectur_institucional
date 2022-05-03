@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Session;
 use App\Models\SubTema;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSubTemaRequest;
@@ -18,6 +19,7 @@ class SubTemaController extends Controller
     public function index()
     {
         $subtemas = SubTema::paginate(5);
+
         return view('subtema.subtema-index', compact('subtemas'));
     }
 
@@ -64,6 +66,7 @@ class SubTemaController extends Controller
     public function show(/* SubTema $subTema */ $id)
     {
         $subtema = SubTema::findOrFail($id);
+
         return view('subtema.subtema-show', compact('subtema'));
     }
 
@@ -77,6 +80,7 @@ class SubTemaController extends Controller
     {
         $subtema = SubTema::findOrFail($id);
         $subcategories = DB::table('sub_categories')->orderBy('name','asc')->get();
+
         return view('subtema.subtema-edit', compact('subtema', 'subcategories'));
     }
 
@@ -118,4 +122,13 @@ class SubTemaController extends Controller
             return redirect()->route('subcategory.index')->with('error',$e->getMessage());
         }
     }
+
+    public function addElement($id)
+    {
+        $x = Session::put('subtema_id', $id);
+        // $y = Session::get('subtema_id');
+        // dd($y);
+        return redirect('/subTemaElements');
+    }
+
 }
