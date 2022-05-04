@@ -17,6 +17,7 @@ class CreatePaginasTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('imagen')->nullable();
+            $table->string('slug')->nullable();
             $table->string('descripcion')->nullable();
             $table->timestamps();
         });

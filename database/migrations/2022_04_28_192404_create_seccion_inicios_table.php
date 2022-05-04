@@ -16,6 +16,7 @@ class CreateSeccionIniciosTable extends Migration
         Schema::create('seccion_inicios', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }
