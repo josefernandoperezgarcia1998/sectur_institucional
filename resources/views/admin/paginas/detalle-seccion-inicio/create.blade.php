@@ -40,7 +40,7 @@ Nueva seccion
             <input type="text" class="form-control" id="" name="enlace">
         </div>
         <button type="submit" class="btn btn-primary">Crear</button>
-        <a href="{{route('inicio-detalle')}}" class="btn btn-light">Regresar</a>
+        <a href="{{route('seccion-inicio.index')}}" class="btn btn-light">Regresar</a>
     </form>
 </div>
 

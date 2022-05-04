@@ -61,7 +61,7 @@ class DetalleSeccionInicioController extends Controller
 
         DetalleSeccionInicio::create($detalleSeccion_data);
 
-        return redirect()->route('mostrar-seccion-inicio', $getSeccion_id)->with('success', 'Seccion de inicio creada correctamente');
+        return redirect()->route('seccion-inicio.show', $getSeccion_id)->with('success', 'Seccion de inicio creada correctamente');
     }
 
     /**
@@ -72,7 +72,7 @@ class DetalleSeccionInicioController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -119,7 +119,7 @@ class DetalleSeccionInicioController extends Controller
         DetalleSeccionInicio::where('id', '=' , $id)->update($seccionInicioData);
         $seccionInicio = DetalleSeccionInicio::findOrFail($id);
 
-        return redirect()->route('mostrar-seccion-inicio', $getSeccion_id)->with('success', 'Seccion de inicio actualizada correctamente');
+        return redirect()->route('seccion-inicio.show', $getSeccion_id)->with('success', 'Seccion de inicio actualizada correctamente');
     }
 
     /**
@@ -132,17 +132,13 @@ class DetalleSeccionInicioController extends Controller
     {
         // Getting the $id from the section where I am
         $getSeccion_id = Session::get('seccion_id');
-        
-        try{
-            $seccionInicio = DetalleSeccionInicio::findOrFail($id);
 
-            if(Storage::delete('public/'.$seccionInicio->imagen)){
-                DetalleSeccionInicio::destroy($id);
-            }
+        $seccionInicio = DetalleSeccionInicio::findOrFail($id);
 
-            return redirect()->route('mostrar-seccion-inicio', $getSeccion_id)->with('success', 'Seccion de inicio eliminada correctamente');
-        } catch (\Illuminate\Database\QueryException $e){
-            return redirect()->route('mostrar-seccion-inicio', $getSeccion_id)->with('error',$e->getMessage());
+        if(Storage::delete('public/'.$seccionInicio->imagen)){
+            DetalleSeccionInicio::destroy($id);
         }
+
+        return redirect()->route('seccion-inicio.show', $getSeccion_id)->with('success', 'Seccion de inicio eliminada correctamente');
     }
 }

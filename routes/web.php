@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\DetalleSeccionInicio;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +20,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\Admin\InicioFrontController::class, 'index'])->name('inicio');
 
+/* Ruta resource para la sección de páginas (Inicio, conócenos, etc) */
 Route::resource('paginas', App\Http\Controllers\Admin\PaginasController::class)->names('paginas');
+
+/* Ruta exclusiva para la sección de inicio ( lo primero que se ve en la plataforma al entrar ) */
+/* Rutas de CRUD para las secciones de inicio */
+Route::resource('seccion-inicio', App\Http\Controllers\Admin\SeccionInicioController::class)->names('seccion-inicio');
+
+/* Ruta exclusiva para la sección de inicio ( lo primero que se ve en la plataforma al entrar ) */
 Route::resource('detalle-seccion-inicio', App\Http\Controllers\Admin\DetalleSeccionInicioController::class)->names('detalle-seccion-inicio');
 
-/* Rutas de CRUD para las secciones de inicio */
-Route::get('/pagina-detalle', [App\Http\Controllers\Admin\PaginasController::class, 'paginaInicioDetalle'])->name('inicio-detalle');
-Route::get('/crear-seccion-inicio',[App\Http\Controllers\Admin\PaginasController::class, 'inicioDetalleCrearSeccion'])->name('crear-seccion-inicio');
-Route::post('/created-seccion-inicio',[App\Http\Controllers\Admin\PaginasController::class, 'inicioDetalleStoreSeccion'])->name('created-seccion-inicio');
-Route::get('/mostrar-seccion/{id}',[App\Http\Controllers\Admin\PaginasController::class, 'inicioDetalleShowSeccion'])->name('mostrar-seccion-inicio');
-Route::get('/editar-seccion/{id}',[App\Http\Controllers\Admin\PaginasController::class, 'inicioDetalleEditarSeccion'])->name('editar-seccion-inicio');
-Route::put('/actualizar-seccion/{id}',[App\Http\Controllers\Admin\PaginasController::class, 'inicioDetalleUpdateSeccion'])->name('actualizar-seccion-inicio');
-Route::delete('/eliminar-seccion/{id}',[App\Http\Controllers\Admin\PaginasController::class, 'inicioDetalleDestroySeccion'])->name('eliminar-seccion-inicio');
+
+/* Ruta para la secciones */
+Route::resource('secciones', App\Http\Controllers\Admin\SeccionController::class)->names('secciones');
+
+
+
+
+
+
 
 
 /* ------------------------------------------ */

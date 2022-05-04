@@ -11,12 +11,13 @@ class SeccionInicio extends Model
 
     protected $fillable = [
         'titulo',
+        'slug',
     ];
 
-        /* SeccionInicio has many DetallesSeccionInicio */
-        public function detallesSeccionesInicio()
-        {
-            return $this->hasMany('App\Models\DetalleSeccionInicio','id','seccion_id');
-        }
-
+    /* SeccionInicio has many DetallesSeccionInicio */
+    public function detallesSeccionesInicio()
+    {
+        return $this->hasMany('App\Models\DetalleSeccionInicio','id','seccion_id');
+    }
+    
 }

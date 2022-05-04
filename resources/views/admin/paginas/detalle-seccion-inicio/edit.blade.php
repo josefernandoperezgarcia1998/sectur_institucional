@@ -41,7 +41,7 @@ Editar seccion
             <input type="text" class="form-control" id="" name="enlace" value="{{ old('enlace', $detalleSeccion->enlace) }}">
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a href="{{route('inicio-detalle')}}" class="btn btn-light">Regresar</a>
+        <a href="{{route('seccion-inicio.index')}}" class="btn btn-light">Regresar</a>
     </form>
 </div>
 

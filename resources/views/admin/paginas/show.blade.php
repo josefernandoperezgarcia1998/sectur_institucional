@@ -1,16 +1,10 @@
 @extends('plantilla.general')
 
 @section('title_page')
-{{$seccion->titulo}}
+{{$pagina->titulo}}
 @endsection
 
 @section('content_page')
-@if (session('success'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{session('success')}}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
 <style>
     .-b-text-undexpanded {
         display: -webkit-box;
@@ -35,7 +29,7 @@
 </style>
 
 <div class="d-flex justify-content-end flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <a href="{{ route('seccion-inicio.edit', $seccion->id) }}" class="btn btn-light btn-sm">
+    <a href="{{ route('editar-seccion-inicio', $pagina) }}" class="btn btn-light btn-sm">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
             viewBox="0 0 16 16">
             <path
@@ -44,7 +38,7 @@
         Editar
     </a>
     &nbsp;
-    <form action="{{ route('seccion-inicio.destroy', $seccion->id) }}" method="POST"
+    <form action="{{ route('eliminar-seccion-inicio', $pagina->id) }}" method="POST"
         style="display: inline-block;"
         onsubmit="return confirm('¿Estas seguro de eliminar esta sección de la página?')">
         @csrf
@@ -69,7 +63,7 @@
                 <th class="table-light" colspan="1"><span>Título de la sección</span></th>
             </tr>
             <tr class="">
-                <td class="" colspan="1">{{$seccion->titulo}}</td>
+                <td class="" colspan="1">{{$pagina->titulo}}</td>
         </tbody>
     </table>
 </div>

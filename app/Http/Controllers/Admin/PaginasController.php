@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\SeccionInicio;
 use Illuminate\Http\Request;
 use App\Models\Pagina;
+use App\Models\Seccion;
 use Session;
 
 class PaginasController extends Controller
@@ -62,7 +63,11 @@ class PaginasController extends Controller
      */
     public function show($id)
     {
-        //
+        $pagina_data = Pagina::findOrFail($id);
+
+        $elementosSeccion = Seccion::where('pagina_id', '=', $id)->get();
+        
+        return view('admin.paginas.show', compact('pagina_data', 'elementosSeccion'));
     }
 
     /**
@@ -104,88 +109,92 @@ class PaginasController extends Controller
                 Pagina::destroy($id);
             }
 
-            return redirect()->route('paginas.index')->with('success', 'Pagina eliminada correctamente');
+            return redirect()->route('inicio-detalle')->with('success', 'Pagina eliminada correctamente');
         } catch (\Illuminate\Database\QueryException $e){
-            return redirect()->route('paginas.index')->with('error',$e->getMessage());
+            return redirect()->route('inicio-detalle')->with('error',$e->getMessage());
         }
     }
 
-    public function paginaInicioDetalle()
-    {
-        $seccionesInicio = SeccionInicio::paginate(5);
+    // public function paginaInicioDetalle()
+    // {
+    //     $seccionesInicio = SeccionInicio::paginate(5);
 
-        return view('admin.paginas.seccion-inicio.index', compact('seccionesInicio'));
-    }
+    //     return view('admin.paginas.seccion-inicio.index', compact('seccionesInicio'));
+    // }
 
-    public function inicioDetalleCrearSeccion()
-    {
-        return view('admin.paginas.seccion-inicio.create');
-    }
+    // public function inicioDetalleCrearSeccion()
+    // {
+    //     return view('admin.paginas.seccion-inicio.create');
+    // }
 
-    public function inicioDetalleStoreSeccion(Request $request)
-    {
-        $seccionInicioData = $request->all();
+    // public function inicioDetalleStoreSeccion(Request $request)
+    // {
+    //     $seccionInicioData = $request->all();
         
-        // Validating the date_end_service, needs to be equals or after of the date start service
-        $validated = $request->validate([
-            'titulo' => 'string|required',
-        ]);
+    //     // Validating the date_end_service, needs to be equals or after of the date start service
+    //     $validated = $request->validate([
+    //         'titulo' => 'string|required',
+    //     ]);
 
-        SeccionInicio::create($seccionInicioData);
+    //     SeccionInicio::create($seccionInicioData);
         
-        return redirect()->route('inicio-detalle')->with('success', 'Página creada correctamente');
+    //     return redirect()->route('inicio-detalle')->with('success', 'Página creada correctamente');
     
-    }
+    // }
 
-    public function inicioDetalleShowSeccion($id)
-    {
-        $seccion = SeccionInicio::findOrFail($id);
-        $elementosSeccion = DetalleSeccionInicio::where('seccion_id', '=', $id)->get();
+    // public function inicioDetalleShowSeccion($id)
+    // {
+
+    //     $seccion = SeccionInicio::findOrFail($id);
+    //     $elementosSeccion = DetalleSeccionInicio::where('seccion_id', '=', $id)->get();
         
-        $putSeccion_id = Session::put('seccion_id', $id);
         
-        return view('admin.paginas.seccion-inicio.show', compact('seccion', 'elementosSeccion'));
-    }
-
-    public function inicioDetalleEditarSeccion($id)
-    {
-        $seccion = SeccionInicio::findOrFail($id);
-
-        return view('admin.paginas.seccion-inicio.editar', compact('seccion'));
-    }
-
-    public function inicioDetalleUpdateSeccion(Request $request, $id)
-    {
-        $seccionInicioData = request()->except('_token','_method');
+    //     $putSeccion_id = Session::put('seccion_id', $id);
         
-        // Validating the date_end_service, needs to be equals or after of the date start service
-        $validated = $request->validate([
-            'titulo' => 'string|required',
-        ]);
+    //     return view('admin.paginas.seccion-inicio.show', compact('seccion','elementosSeccion'));
+    // }
 
-        SeccionInicio::where('id', '=' , $id)->update($seccionInicioData);
-        $category = SeccionInicio::findOrFail($id);
+    // public function inicioDetalleEditarSeccion($id)
+    // {
+    //     $seccion = SeccionInicio::findOrFail($id);
 
-        return redirect()->route('mostrar-seccion-inicio', $id)->with('success', 'Categoría actualizada correctamente');
-    }
+    //     return view('admin.paginas.seccion-inicio.editar', compact('seccion'));
+    // }
 
-    public function inicioDetalleDestroySeccion($id)
-    {
+    // public function inicioDetalleUpdateSeccion(Request $request, $id)
+    // {
+    //     $seccionInicioData = request()->except('_token','_method');
+    //     // $seccionInicioData = $request->all();
+        
+    //     // Validating the date_end_service, needs to be equals or after of the date start service
+    //     $validated = $request->validate([
+    //         'titulo' => 'string',
+    //         'slug' => 'string',
+    //     ]);
 
-        try{
-            $seccion = SeccionInicio::findOrFail($id);
+    //     SeccionInicio::where('id', '=' , $id)->update($seccionInicioData);
+    //     // $seccioninicio->update($seccionInicioData);
+    //     // $category = SeccionInicio::findOrFail($seccionInicioData);
 
-            if(Storage::delete('public/'.$seccion->imagen)){
-                SeccionInicio::destroy($id);
-            }
+    //     return redirect()->route('mostrar-seccion-inicio', $id)->with('success', 'Sección actualizada correctamente');
+    // }
 
-            SeccionInicio::destroy($id);
+    // public function inicioDetalleDestroySeccion($id)
+    // {
 
-            return redirect()->route('paginas.index')->with('success', 'Seccion eliminada correctamente');
-        } catch (\Illuminate\Database\QueryException $e){
-            return redirect()->route('paginas.index')->with('error',$e->getMessage());
-        }
-    }
+    //     try{
+    //         $seccion = SeccionInicio::findOrFail($id);
 
+    //         if(Storage::delete('public/'.$seccion->imagen)){
+    //             SeccionInicio::destroy($id);
+    //         }
+
+    //         SeccionInicio::destroy($id);
+
+    //         return redirect()->route('inicio-detalle')->with('success', 'Seccion eliminada correctamente');
+    //     } catch (\Illuminate\Database\QueryException $e){
+    //         return redirect()->route('inicio-detalle')->with('error',$e->getMessage());
+    //     }
+    // }
 
 }
