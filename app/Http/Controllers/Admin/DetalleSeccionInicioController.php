@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\DetalleSeccionInicio;
 use Illuminate\Http\Request;
-use Session;
 
 class DetalleSeccionInicioController extends Controller
 {

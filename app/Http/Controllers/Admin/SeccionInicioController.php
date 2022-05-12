@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use App\Models\DetalleSeccionInicio;
 use App\Http\Controllers\Controller;
 use App\Models\SeccionInicio;
 use Illuminate\Http\Request;
 use App\Models\Pagina;
 use App\Models\Seccion;
-use Session;
 
 class SeccionInicioController extends Controller
 {
@@ -65,8 +65,8 @@ class SeccionInicioController extends Controller
     public function show($id)
     {
         $seccion = SeccionInicio::findOrFail($id);
-        $elementosSeccion = DetalleSeccionInicio::where('seccion_id', '=', $id)->get();
         
+        $elementosSeccion = DetalleSeccionInicio::where('seccion_id', '=', $id)->get();
         
         $putSeccion_id = Session::put('seccion_id', $id);
         
