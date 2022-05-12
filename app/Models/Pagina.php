@@ -20,6 +20,6 @@ class Pagina extends Model
     /* Relación uno a muchos | Una página tiene muchas secciones */
     public function secciones()
     {
-        return $this->hasMany(Seccion::class);
+        return $this->hasMany(Seccion::class, 'id', 'pagina_id');
     }
 }
