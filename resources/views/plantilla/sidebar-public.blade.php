@@ -1,11 +1,11 @@
 <ul class="list-unstyled ps-0">
     <li class="mb-1">
-        <a  href="" class="btn align-items-center rounded collapsed">
+        <a  href="{{ route('inicio') }}" class="btn align-items-center rounded collapsed">
             Inicio
         </a>
     </li>
     <li class="mb-1">
-        <a href="" class="btn align-items-center rounded collapsed">
+        <a href="{{ route('conocenos.index') }}" class="btn align-items-center rounded collapsed">
             Conócenos
         </a>
     </li>

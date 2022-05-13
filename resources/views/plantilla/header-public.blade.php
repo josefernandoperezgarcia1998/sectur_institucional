@@ -8,10 +8,10 @@
     <div style="display:block;">
         <ul class="nav nav_header">
             <li class="nav-item effect-hover">
-                <a class="nav-link text-white" href="#">Inicio</a>
+                <a class="nav-link text-white" href="{{ route('inicio') }}">Inicio</a>
             </li>
             <li class="nav-item effect-hover">
-                <a class="nav-link text-white" href="#">Conócenos</a>
+                <a class="nav-link text-white" href="{{ route('conocenos.index') }}">Conócenos</a>
             </li>
             <li class="nav-item effect-hover">
                 <a class="nav-link text-white" href="#">Marco Jurídico</a>
