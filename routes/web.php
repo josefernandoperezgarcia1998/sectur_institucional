@@ -30,12 +30,19 @@ Route::resource('seccion-inicio', App\Http\Controllers\Admin\SeccionInicioContro
 /* Ruta exclusiva para la sección de inicio ( lo primero que se ve en la plataforma al entrar ) */
 Route::resource('detalle-seccion-inicio', App\Http\Controllers\Admin\DetalleSeccionInicioController::class)->names('detalle-seccion-inicio');
 
-
 /* Ruta para la secciones */
 Route::resource('secciones', App\Http\Controllers\Admin\SeccionController::class)->names('secciones');
 
+/* Ruta para los elementos */
+Route::resource('elementos', App\Http\Controllers\Admin\ElementoController::class)->names('elementos');
 
+/* Ruta para conócenos */
+Route::get('/conocenos', [App\Http\Controllers\Admin\Front\ConocenosController::class, 'index'])->name('conocenos.index');
 
+Route::prefix('conocenos')->group(function () {
+    Route::get('/mision-vision', [App\Http\Controllers\Admin\Front\ConocenosController::class, 'vistaMisionVision'])->name('conocenos.mision-vision');
+    Route::get('/organigrama', [App\Http\Controllers\Admin\Front\ConocenosController::class, 'vistaOrganigrama'])->name('conocenos.organigrama');
+});
 
 
 
