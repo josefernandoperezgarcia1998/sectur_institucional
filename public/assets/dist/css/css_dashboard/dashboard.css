@@ -39,7 +39,8 @@ body {
 @media (max-width: 767.98px) {
   .sidebar {
     /* Modifiqué de 5rem a 0rem */
-    top: 5rem; 
+    top: 5rem;
+    width: 100%;
   }
   .nav_header{
     display:none !important;
