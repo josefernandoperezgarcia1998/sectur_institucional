@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Elemento;
+use App\Models\Seccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ConocenosController extends Controller
 {
@@ -15,11 +17,55 @@ class ConocenosController extends Controller
      */
     public function index()
     {
-        $bienvenida = Elemento::with('seccion')
-                        ->where('titulo','=','Bienvenida')
-                        ->select('titulo','descripcion', 'updated_at')
-                        ->get();
+        // $bienvenida = Elemento::with('seccion')
+        //                 ->where('titulo','=','Bienvenida')
+        //                 ->select('titulo','descripcion', 'updated_at')
+        //                 ->get();
         // dd($bienvenidaTitulo);
+
+        
+        // $elemento = DB::table('elementos')
+        //                 ->join('seccions', 'seccions.id', '=', 'elementos.seccion_id')
+        //                 ->where('seccions.slug','=','conocenos')
+        //                 ->select('elementos.*')
+        //                 ->get();
+
+        // $elemento = Elemento::with('seccion')->get();
+        // $elemento = Seccion::with('elementos')->get();
+
+        // $secciones = Seccion::all();
+        // $secciones = $secciones->load('elementos');
+
+        // Este si funciona como quiero
+        // $seccion1 = Seccion::with('elementos')
+        //             ->where('slug','=','secretaria-de-turismo')
+        //             ->get();
+
+        // Este si funciona como quiero
+        // $bienvenida = Seccion::with(['elementos' => function ($query) {
+        //             $query->where('titulo', '=', 'Bienvenida');
+        //             }])
+        //             ->where('slug','=','secretaria-de-turismo')
+        //             ->get();
+
+        $seccion_id_collection = Seccion::where('slug', 'secretaria-de-turismo')->select('id')->get();
+
+        $aux_id = 0;
+        foreach($seccion_id_collection as $seccionId)
+        {
+            $aux_id=$seccionId->id;
+        }
+        
+
+        $bienvenida = Elemento::with(['seccion' => function ($query) {
+                    $query->where('slug', 'secretaria-de-turismo');
+                    }])
+                    ->where('titulo', '=', 'Bienvenida')
+                    ->where('seccion_id','=',$aux_id)
+                    ->get();
+                    
+
+        // dd($bienvenida);
         return view('front.conocenos.conocenos', compact('bienvenida'));
     }
 
