@@ -25,6 +25,6 @@ class Seccion extends Model
     /* Relación uno a muchos | Una sección tiene muchos elementos */
     public function elementos()
     {
-        return $this->hasMany(Elemento::class);
+        return $this->hasMany('App\Models\Elemento', 'seccion_id','id');
     }
 }
